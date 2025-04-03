@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
 @import "tailwindcss";
 
 :root {
@@ -8,8 +9,8 @@
   color-scheme: light dark;
   /* color: rgba(255, 255, 255, 0.87);
   background-color: #242424; */
-  background-color: white;
-  color: black;
+  /*   background-color: white; */
+  color: rgb(255, 255, 255);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -23,9 +24,13 @@ main {
 
 a {
   text-decoration: underline;
-  transition:  color ease-in-out 150ms;
+  transition: color ease-in-out 150ms;
 }
 
 a:hover {
   color: teal;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }

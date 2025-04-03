@@ -1,3 +1,8 @@
+html {
+  background-color: black !important;
+  overflow-y: hidden;
+}
+
 .main {
   height: 100vh;
   width: 100vw;
@@ -251,10 +256,13 @@
 
 .mainLanding {
   background: url(/minecraft-bg.png);
+  background-attachment: fixed;
   background-position: center;
+  background-size: cover;
   height: 100vh;
   color: white;
   padding-top: 77px;
+  background-repeat:no-repeat ;
 }
 
 .drawerButton {
@@ -301,7 +309,29 @@
   flex-direction: row;
   flex-wrap: wrap;
   gap: 15px;
+  overflow-y: scroll;
+  height: 78%;
 }
+/* 
+.listitems::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+.listitems::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+.listitems::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555;
+} */
 
 .SellCard {
   display: flex;
