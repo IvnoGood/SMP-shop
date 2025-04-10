@@ -1,6 +1,7 @@
 // next.config.js
 module.exports = {
     images: {
-        domains: ['*']
+        domains: ['*'],
+unoptimized: true
     }
 }
