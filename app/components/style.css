@@ -1,6 +1,6 @@
-html {
+html,
+main {
   background-color: black !important;
-  overflow-y: hidden;
 }
 
 .main {
@@ -24,6 +24,7 @@ html {
   align-content: center;
   justify-content: center;
   gap: 15px;
+  max-width: 425px;
   /*   height: 41vh; */
   flex-direction: column;
   background-color: #18181b;
@@ -127,14 +128,17 @@ html {
 
 .header {
   background-color: hsl(240 5.9% 10%);
-  position: absolute;
-  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   color: white;
   padding: 15px;
   display: flex;
   gap: 15px;
   justify-content: space-between;
   height: 62px;
+  z-index: 100;
 }
 
 .headerButtons {
@@ -262,7 +266,7 @@ html {
   height: 100vh;
   color: white;
   padding-top: 77px;
-  background-repeat:no-repeat ;
+  background-repeat: no-repeat;
 }
 
 .drawerButton {
@@ -312,6 +316,7 @@ html {
   overflow-y: scroll;
   height: 78%;
 }
+
 /* 
 .listitems::-webkit-scrollbar-track
 {
@@ -360,10 +365,6 @@ html {
 .SellCardTitle {
   font-weight: 500;
   width: fit-content;
-}
-
-.desc-image {
-  width: 150px;
 }
 
 .SellCardDesc {

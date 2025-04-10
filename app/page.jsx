@@ -1,28 +1,49 @@
 'use client'
 
 import Image from "next/image";
-import "@/app/components/style.css"
+import "@/app/components/style.css";
+import { Carousel } from '@/app/components/ui/Carroussel'
+
 
 export default function Home() {
+
   return (
     <>
-      <h1>Pourquoi créer ce projet ?</h1>
-      <p>Ce site est une plateforme SaaS (Software as a Service) conçue pour offrir aux administrateurs un outil clé en main leur permettant de créer et gérer un espace de vente en ligne dédié aux membres de leur communauté ou serveur.
+      <main className="relative min-h-screen w-full bg-black text-white">
+        {/* Background image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/landing-bg.png"
+            alt="Minecraft background"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black opacity-50" />
+        </div>
 
-        Grâce à cette solution, les administrateurs peuvent déployer rapidement une boutique en ligne où les membres peuvent acheter, vendre ou échanger des produits et services de manière fluide et sécurisée.
+        {/* Content */}
+        <div className="relative z-10 flex flex-col items-center justify-center min-h-screen text-center">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            This is the solution for Minecraft Users
+          </h1>
+          <p className="text-2xl md:text-2xl mb-6">Made by Minecraft Users</p>
+          <button className="px-6 py-2 bg-white text-black rounded-full text-lg font-medium hover:scale-105 transition cursor-pointer">
+            Join now
+          </button>
+        </div>
+      </main>
+      {/* NEW SECTION UNDERNEATH */}
+      <section className="py-16 px-8">
+        <div className="max-w-4xl mx-auto text-center mb-12">
+          <h2 className="text-3xl font-bold mb-4">What is this project?</h2>
+          <p className="text-gray-700 text-lg">
+            This Minecraft world isn't just a game — it's a whole experience.
+            Explore dynamic towns, player-run shops, unique challenges, and an economy that you help shape.
+          </p>
+        </div>
 
-        Les fonctionnalités incluent :
-
-        Personnalisation de la boutique (design, catégories, gestion des produits/services).
-        Système de gestion des paiements sécurisé, avec intégration de différentes méthodes (cartes bancaires, PayPal, cryptomonnaies, etc.).
-        Gestion des utilisateurs et permissions pour contrôler les rôles et les accès au sein de la boutique.
-        Outils analytiques pour suivre les performances des ventes et les interactions des utilisateurs.
-
-        En résumé, ce SaaS vise à faciliter la mise en place d’un espace e-commerce interne, permettant aux membres d'un serveur de mener des transactions en toute simplicité, tout en offrant aux administrateurs un contrôle total sur l'environnement commercial. 🚀 </p>
-      <button onClick={() => {
-        localStorage.removeItem("isAbt");
-        window.location.reload();
-      }}>Exit </button>
+        {/* Carousel */}
+        <Carousel />
+      </section>
     </>
   );
 }

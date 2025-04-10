@@ -2,9 +2,12 @@
 
 import { useState, useEffect } from 'react'
 import { supabase } from "@/app/components/supabaseClient"; // Import the singleton client
-import { Header } from "@/app/components/shopHeader";
+import Image from 'next/image';
 /* import { Auth } from '@supabase/auth-ui-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared' */
+import mcData from "minecraft-data";
+
+const items = mcData("1.20").itemsArray;
 
 import "@/app/components/style.css"
 
@@ -55,12 +58,12 @@ function LandingPage() {
     }
 
     useEffect(() => {
-        getInstruments()
+        getInstruments();
     }, [])
 
     return (
         <>
-            <Header></Header>
+
 
             <main className='mainLanding'>
                 <button className='drawerButton' onClick={() => {
@@ -100,6 +103,19 @@ function LandingPage() {
                         <label className="user-label">Image (url uniquement)</label>
                     </div>
 
+                    <div className="input-group">
+                        <select required className="input w-[193]">
+                            <option value="default">
+                                Bloc au choix
+                            </option>
+                            {items.map((item) => (
+                                <option key={item.id} value={item.name}>
+                                    {item.displayName}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+
                     <button type="submit" className='formsubmit'>Submit</button>
                 </form>
 
@@ -109,7 +125,7 @@ function LandingPage() {
                     {data.map((data) => (
                         <li className='SellCard' key={data.id}>
                             <h1 className='SellCardTitle'>{data.title}</h1>
-                            <img src={data.image_url} alt="image-descriptive" className='desc-image' />
+                            <img src={data.image_url} alt="image-descriptive" /* width={150} height={150} */ className='desc-image' />
                             <p className='SellCardDesc'><a href={"https://fr.namemc.com/profile/" + data.username}>{data.username}</a> - {data.price}</p>
                         </li>
                     ))}
