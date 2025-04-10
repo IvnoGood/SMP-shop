@@ -44,7 +44,7 @@ export default function Home() {
         {/* Carousel */}
         <Carousel />
       </section>
-      section className="bg-white py-12 px-6 rounded-2xl shadow-md max-w-4xl mx-auto mt-10">
+      <section className="bg-white py-12 px-6 rounded-2xl shadow-md max-w-4xl mx-auto mt-10">
       <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">
         Project Overview
       </h2>
