@@ -1,20 +1,21 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { supabase } from "@/app/components/supabaseClient"; // Import the singleton client
+import { supabase } from "@/app/components/auth/supabaseClient"; // Import the singleton client
 import Image from 'next/image';
-/* import { Auth } from '@supabase/auth-ui-react';
-import { ThemeSupa } from '@supabase/auth-ui-shared' */
+import { useRouter } from 'next/navigation'
 import mcData from "minecraft-data";
 
 const items = mcData("1.20").itemsArray;
 
-import "@/app/components/style.css"
+import "@/app/components/css/Shop.css"
 
 function LandingPage() {
     const [data, setData] = useState([]);
     const [formlleft, setFormleft] = useState("-300px");
     const [openformlogo, setOpenformlogo] = useState("left_panel_open")
+    const router = useRouter();
+    const [session, setSession] = useState(null);
 
     async function getInstruments() {
 
@@ -28,7 +29,6 @@ function LandingPage() {
         }
 
         if (data.length == 0) {
-
             return;
         }
 
@@ -58,12 +58,16 @@ function LandingPage() {
     }
 
     useEffect(() => {
-        getInstruments();
-    }, [])
+        getInstruments()
+        supabase.auth.getSession().then(({ data }) => {
+            if (!data.session) {
+                router.push("/login");
+            }
+        });
+    }, []);
 
     return (
         <>
-
 
             <main className='mainLanding'>
                 <button className='drawerButton' onClick={() => {

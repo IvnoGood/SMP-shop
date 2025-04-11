@@ -1,8 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { supabase } from "@/app/components/supabaseClient";
-import "@/app/components/style.css";
+import { supabase } from "@/app/components/auth/supabaseClient";
+import "@/app/components/css/Auth.css";
 import { useRouter } from 'next/navigation'
 import { LoginForm } from '@/app/components/ui/LoginForm'
 import Link from 'next/link'
@@ -28,6 +28,13 @@ export default function HandleRegister() {
         }
     }
 
+    useEffect(() => {
+        supabase.auth.getSession().then(({ data }) => {
+            if (data.session) {
+                router.push("/");
+            }
+        });
+    }, [])
 
     return (
         <div className='main'>
@@ -66,9 +73,9 @@ export default function HandleRegister() {
                     {error ? <p className="text-red-500">An error occured: {error} </p> : <></>}
                     {success && <p className="text-green-500 mb-2">Check your email to verify!</p>}
                 </div>
-                <div className='imagePartLogin'>
+                {/* <div className='imagePartLogin'>
                     <img src="/minecraft-lilbox.png" alt="" className='lilimageloginform' />
-                </div>
+                </div> */}
             </div>
             <footer className='flex absolute bottom-7'>
                 <a href="./About.html" className='text-white' onClick={() => {

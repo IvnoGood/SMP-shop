@@ -1,7 +1,9 @@
 'use client'
-import { supabase } from "@/app/components/supabaseClient";
+import { supabase } from "@/app/components/auth/supabaseClient";
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+import "@/app/components/css/Header.css"
 
 export function Header() {
     const router = useRouter();
@@ -21,6 +23,8 @@ export function Header() {
         });
 
         return () => subscription.unsubscribe();
+
+
     }, []);
 
     const handleLogout = async () => {
@@ -30,14 +34,18 @@ export function Header() {
 
     return (
         <header className='header'>
+            <Link href={"/"} className='headerButtons text-center'><p className='headerbuttonstext'>Home</p></Link>
             <button className='headerButtons'><p className='headerbuttonstext'>Shops</p></button>
             <button className='headerButtons'><p className='headerbuttonstext'>Pubs</p></button>
+            {session && (<Link href={"/shop"} className='headerButtons text-center'><p className='headerbuttonstext'>Dashboard</p></Link>)}
 
             {session ? (
                 <>
                     <button className="Btn" onClick={handleLogout}>
                         <div className="sign">
-                            <svg viewBox="0 0 512 512"><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path></svg>
+                            <span className="material-symbols-outlined">
+                                logout
+                            </span>
                         </div>
                         <div className="text">Logout</div>
                     </button>
@@ -47,8 +55,13 @@ export function Header() {
                     </div>
                 </>
             ) : (
-                <button className="px-6 py-2 bg-white text-black rounded-full text-lg font-medium hover:scale-105 transition cursor-pointer" onClick={() => router.push("/login")}>
-                    Log in
+                <button className="Btn !bg-[#67b957]" onClick={handleLogout}>
+                    <div className="sign">
+                        <span className="material-symbols-outlined">
+                            login
+                        </span>
+                    </div>
+                    <div className="text">Login</div>
                 </button>
             )
             }
