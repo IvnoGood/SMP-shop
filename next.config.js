@@ -1,7 +1,7 @@
 // next.config.js
-module.exports = {
-    images: {
-        domains: ['*'],
-unoptimized: true
-    }
-}
+const nextConfig = {
+  /* output: "export", */
+  reactStrictMode: true,
+};
+
+module.exports = nextConfig;

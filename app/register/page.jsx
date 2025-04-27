@@ -1,17 +1,16 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { supabase } from "@/app/components/auth/supabaseClient";
-import "@/app/components/css/Auth.css";
+import { supabase } from "@/components/auth/supabaseClient";
+import "@/components/css/Auth.css";
 import { useRouter } from 'next/navigation'
-import { LoginForm } from '@/app/components/ui/LoginForm'
+import { LoginForm } from '@/components/ui/LoginForm'
 import Link from 'next/link'
 
 export default function HandleRegister() {
     const [password, setPassword] = useState("")
     const [email, setEmail] = useState("")
     const [error, setError] = useState(null)
-    const [success, setSuccess] = useState(false)
     const router = useRouter()
 
     const HandleRegisterPress = async (e) => {
@@ -24,7 +23,37 @@ export default function HandleRegister() {
         if (error) {
             setError(error.message)
         } else {
-            setSuccess(true)
+            Login()
+            AddUserInfo()
+        }
+    }
+
+    async function AddUserInfo() {
+        const { data: { user }, error1 } = await supabase.auth.getUser()
+        if (error1) {
+            console.log(error1)
+        }
+        console.log('User ID:', user?.id)
+
+        const { data, error } = await supabase
+            .from("Users") // Table name
+            .insert([
+                { identifier: user?.id } // New row data
+            ]);
+
+        if (error) {
+            console.error("Insert Error:", error.message);
+        }
+    }
+
+    async function Login() {
+        const { error } = await supabase.auth.signInWithPassword({
+            email,
+            password,
+        })
+
+        if (error) {
+            setError(error.message)
         }
     }
 
@@ -71,18 +100,11 @@ export default function HandleRegister() {
                         <span className='text-xs otherOptloginspan bg-[#18181b] z-200 relative p-1 text-[#ababab]'>Ou continue avec</span>
                     </div> */}
                     {error ? <p className="text-red-500">An error occured: {error} </p> : <></>}
-                    {success && <p className="text-green-500 mb-2">Check your email to verify!</p>}
                 </div>
                 {/* <div className='imagePartLogin'>
                     <img src="/minecraft-lilbox.png" alt="" className='lilimageloginform' />
                 </div> */}
             </div>
-            <footer className='flex absolute bottom-7'>
-                <a href="./About.html" className='text-white' onClick={() => {
-                    localStorage.setItem("isAbt", true);
-                    window.location.reload();
-                }}>A propos de ce projet</a>
-            </footer>
         </div>
     )
 }

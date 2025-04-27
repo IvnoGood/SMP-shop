@@ -1,19 +1,16 @@
 'use client'
 
 import Image from "next/image";
-import "@/app/components/style.css";
-import "@/app/components/css/Landing.css";
-import { Carousel } from '@/app/components/ui/Carroussel'
+import "@/components/style.css";
+import "@/components/css/Landing.css";
+import { Carousel } from '@/components/ui/Carroussel'
 import Link from 'next/link'
-import { Footer } from "@/app/components/ui/Footer";
-
 
 export default function Home() {
-
   return (
     <>
       <main>
-        <section className="relative min-h-screen w-full bg-black text-white LandingSection">
+        <section className="relative min-h-screen w-full bg-black text-white snap-start">
           {/* Background image */}
           <div className="absolute inset-0 z-0">
             <img
@@ -23,7 +20,6 @@ export default function Home() {
             />
             <div className="absolute inset-0 bg-black opacity-50" />
           </div>
-
           {/* Content */}
           <div className="relative z-10 flex flex-col items-center justify-center min-h-screen text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -39,14 +35,6 @@ export default function Home() {
         {/* NEW SECTION UNDERNEATH */}
         <section className="py-16 px-8 h-screen flex justify-center LandingSection">
           <div className="Content">
-            <div className="absolute inset-0 z-0">
-              <img
-                src="/landing-bg.png"
-                alt="Minecraft background"
-                className="w-full h-full object-cover text-center"
-              />
-              <div className="absolute inset-0 bg-black opacity-50" />
-            </div>
             <div className="max-w-4xl mx-auto text-center mb-12">
               <h2 className="text-3xl font-bold mb-4">What is this project?</h2>
               <p className="text-lg">
@@ -82,7 +70,6 @@ export default function Home() {
           </ul>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

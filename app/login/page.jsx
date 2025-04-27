@@ -1,8 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { supabase } from "@/app/components/auth/supabaseClient";
-import "@/app/components/css/Auth.css";
+import { supabase } from "@/components/auth/supabaseClient";
+import "@/components/css/Auth.css";
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
@@ -73,12 +73,6 @@ export default function HandleLogin() {
                     <img src="/minecraft-lilbox.png" alt="" className='lilimageloginform' />
                 </div> */}
             </div>
-            <footer className='flex absolute bottom-7'>
-                <a href="./About.html" className='text-white' onClick={() => {
-                    localStorage.setItem("isAbt", true);
-                    window.location.reload();
-                }}>A propos de ce projet</a>
-            </footer>
         </div>
     )
 }
